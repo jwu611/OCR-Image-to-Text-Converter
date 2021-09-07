@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<h2>Converted Text</h2>
+<p style="white-space: pre">{{ converted_text }}</p>
+
+<h2>Processed Image</h2>
+<p> The input image after processing using Gaussian blur and thresholding to reduce noise. This is the version of the input image used for text prediction.</p>
+<img src="{{ url_for ('send_processed_img') }}" alt="Image after gaussian blur and thresholding" style="border:5px solid rgb(68, 19, 133)">
+</body>
+</html>
+
+
+

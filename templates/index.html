@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<h1>OCR Image to Text Converter</h1>
+<p>This application uses Python's OpenCV library to process an image and a 
+  Pytorch machine learning classification model to identify the letters in the image and output
+  them in text formatted similarly to the image.
+  <br>
+  <br>
+  Due to lack of available training datasets, the app is only able to recognize capital letters (A-Z) and 
+  accuracy may vary if the lettering is too thin (the ideal letter thickness is with a medium sharpie like the default image).
+  <br>
+  The app also assumes that the uploaded image only contains text.
+</p>
+
+<h2>Upload Image</h2>
+<form method="POST" enctype="multipart/form-data" style="margin-bottom: 100px;">
+  <label for="img">Select image to convert to text:</label>
+  <input type="file" id="image" name="image" accept="image/*">
+  <input type="submit" value="Upload Image" name="uploadImg">
+</form>
+
+<h2>Demo with Default Image</h2>
+<p>The default image includes all letters of the alphabet with some shadows and noise that could realistically appear
+  on a photo. Click the button below to open the image for download and upload it above to see the conversion.
+</p>
+<form method="POST" enctype="multipart/form-data" style="margin-bottom: 100px;">
+  <label for="img">Download a default image to convert:</label>
+  <input type="submit" value="Default Image" name="downloadDefault">
+</form> 
+
+<h2>More Information</h2>
+<p>The image preprocessing involves grayscaling, Gaussian blurring, and finally thresholding
+  to reduce noise. The classifier uses transfer learning with a pretrained Resnet34 Convolutional Neural Network.
+  <br>
+  <br>
+  For more information on the preprocessing, how the model was trained and accuracy was improved, please visit the
+  project page at jwu611.github.io
+</p>
+
+</body>
+</html>
+
+
+
