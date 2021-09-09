@@ -1,6 +1,6 @@
 import os
 from handwriting_processing import evaluate, OUTPUT_FOLDER
-from flask import Flask, flash, request, redirect, url_for, render_template, send_from_directory
+from flask import Flask, request, render_template, send_from_directory
 from werkzeug.utils import secure_filename
 
 #Initialize the Flask app

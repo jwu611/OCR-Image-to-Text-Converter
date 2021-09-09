@@ -1,14 +1,9 @@
 import torch
-import torch.nn as nn
-import torch.optim as optim
-import numpy as np
-import torchvision
-from torchvision import datasets, models, transforms
-import shutil
-import os
-from PIL import Image, ImageDraw, ImageChops, ImageOps
-#import matplotlib.pyplot as plt
-import random
+#import torch.nn as nn
+#import torch.optim as optim
+#import numpy as np
+from torchvision import transforms
+from PIL import Image, ImageChops
 import cv2 as cv
 import math
 
@@ -76,6 +71,7 @@ def preprocess_image(image_path):
 
   letters_list = []   #entries of format (image, num spaces after curr letter, num lines after curr letter)
 
+  #print("num contours: "+str(len(contours)))
   for c in range(len(contours)):
     x,y,w,h = cv.boundingRect(contours[c])
     
@@ -164,7 +160,7 @@ label_letter_dict = {
 def image_to_text(image, num_lines, num_spaces, model):
   prediction = predict_image(image, model)
   letter = label_letter_dict[str(prediction)]
-  f = open("./output/text_output.txt", "a")
+  #f = open("./output/text_output.txt", "a")
   text = []
   text.append(letter)
   for l in range(num_lines):
@@ -172,16 +168,16 @@ def image_to_text(image, num_lines, num_spaces, model):
   for s in range(num_spaces):
     text.append(" ")
   text_output = "".join(text)
-  f.write(text_output)
-  f.close()
+  #f.write(text_output)
+  #f.close()
   return text_output 
 
 #preprocess image in path, predict, and write prediction to text_output.txt
 def evaluate(image_path):
     letters = preprocess_image(image_path)
     output_str = []
-    if os.path.exists("./output/text_output.txt"):
-        os.remove("./output/text_output.txt")   #remove previous prediction, if any
+    #if os.path.exists("./output/text_output.txt"):
+    #    os.remove("./output/text_output.txt")   #remove previous prediction, if any
     for letter_tuple in letters:
         #image_to_text(letter_tuple[0], letter_tuple[1], letter_tuple[2], model)
         curr_output = image_to_text(letter_tuple[0], letter_tuple[1], letter_tuple[2], model)
